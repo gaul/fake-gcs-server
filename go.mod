@@ -77,3 +77,5 @@ require (
 )
 
 go 1.22.9
+
+replace github.com/fsouza/fake-gcs-server v1.25.1 => github.com/gaul/fake-gcs-server v1.25.1
