@@ -3,7 +3,7 @@ module github.com/fsouza/fake-gcs-server
 require (
 	cloud.google.com/go/pubsub v1.45.3
 	cloud.google.com/go/storage v1.49.0
-	github.com/fsouza/slognil v0.4.1
+	github.com/fsouza/slognil v0.4.2
 	github.com/google/go-cmp v0.6.0
 	github.com/gorilla/handlers v1.5.2
 	github.com/gorilla/mux v1.8.1
@@ -78,3 +78,4 @@ require (
 )
 
 go 1.22.9
+toolchain go1.23.6
