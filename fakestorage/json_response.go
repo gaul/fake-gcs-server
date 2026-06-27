@@ -15,6 +15,9 @@ type jsonResponse struct {
 	header       http.Header
 	data         any
 	errorMessage string
+	// errorReason overrides the error "reason" field; defaults to the HTTP
+	// status text when empty.  GCS uses e.g. "invalid" for a checksum mismatch.
+	errorReason string
 }
 
 type jsonHandler = func(r *http.Request) jsonResponse
@@ -63,9 +66,13 @@ func (r *jsonResponse) getErrorList(status int) []apiError {
 	if status == http.StatusOK {
 		return nil
 	} else {
+		reason := r.errorReason
+		if reason == "" {
+			reason = http.StatusText(status)
+		}
 		return []apiError{{
 			Domain:  "global",
-			Reason:  http.StatusText(status),
+			Reason:  reason,
 			Message: r.getErrorMessage(status),
 		}}
 	}
